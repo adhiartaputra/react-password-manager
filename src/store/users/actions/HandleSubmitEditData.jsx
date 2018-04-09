@@ -7,7 +7,6 @@ import { User } from '../../../firebase';
 
 export function handleEditData (payload) {
   payload.updatedAt = moment().format('LLLL')
-  console.log(payload,'in action')
   return dispatch => {
     dispatch(fetchUserLoading())
     User.doc(payload.id)

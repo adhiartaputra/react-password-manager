@@ -1,8 +1,44 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class Login extends Component {
+
+
+export class Login extends Component {
+  constructor () {
+    super()
+    this.state = {
+      userLogin: {
+        email: '',
+        password: ''
+      }
+    }
+  }
+
+  handleOnChange = e => {
+    let logged = {
+      ...this.state.userLogin,
+      [e.target.name]: e.target.value
+    }
+    this.setState({
+      userLogin: logged
+    })
+  }
+
+  handleOnSubmit = e => {
+    if ( this.state.userLogin.email === this.props.user.email ) {
+      if ( this.state.userLogin.password === this.props.user.password  ) {
+        return localStorage.setItem( 'userId', this.props.user.id )
+      } else {
+        alert( 'wrong password entered' )
+      }
+    } else {
+      alert( 'wrong email entered' )
+    }
+  }
+
   render() {
-    console.log(this.props.user)
     return (
       <div>
         <div className="modal" id="modal-login">
@@ -15,9 +51,9 @@ export default class Login extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <input type="email" className="form-control" name="email" placeholder="Email"/><br/>
-                <input type="password" className="form-control" name="password" placeholder="Password"/><br/>
-                <button type="submit" className="btn btn-success" data-toggle="modal" data-target="#modal-login">Login</button>
+                <input type="email" className="form-control" name="email" placeholder="Email" onChange={ this.handleOnChange }/><br/>
+                <input type="password" className="form-control" name="password" placeholder="Password" onChange={ this.handleOnChange } /><br/>
+                <Link to='/'> <button type="submit" className="btn btn-success" data-toggle="modal" data-target="#modal-login" onClick={ this.handleOnSubmit }>Login</button> </Link>
               </div>
             </div>
           </div>
@@ -26,3 +62,11 @@ export default class Login extends Component {
     )
   }
 };
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  
+}, dispatch)
+
+const connectedLogin = connect(null, mapDispatchToProps)(Login)
+
+export default connectedLogin;

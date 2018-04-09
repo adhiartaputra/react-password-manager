@@ -5,8 +5,9 @@ import { fetchUser, deleteUser } from '../store/users/actions/';
 import { User } from '../firebase';
 import Navbar from '../components/Navbar';
 import Header from './Header';
-import FormEdit from './FomEdit'
-import Login from './Login'
+import FormEdit from './FomEdit';
+import Login from './Login';
+import Search from './Search';
 
 class Home extends Component {
   constructor(props){
@@ -32,14 +33,19 @@ class Home extends Component {
     this.props.deleteUser(userId)
   }
 
+  clearLocalStorage() {
+    localStorage.setItem('userId', '')
+  }
+
   render() {
-    const emailLocal = localStorage.getItem('email')
+    const idLocal = localStorage.getItem('userId')
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <div className="container">
-        <Header/>
+        <Header />
         <h1 style={{textAlign:"center", paddingBottom:"10px"}}>Your Password List</h1>
+        <Search />
           <table className="table table-hover">
               <thead>
                 <tr style={{textAlign:"center"}}>
@@ -55,8 +61,8 @@ class Home extends Component {
                     <tr className="table-secondary" key={user.id}>
                       <td>{user.url}</td>
                       <td>{user.email}</td>
-                      { emailLocal !== null ?
-                        <td>{user.password} </td>
+                      { idLocal === user.id ?
+                        <td>{user.password} <button className="btn btn-info" onClick={ () => this.clearLocalStorage() }>Close</button> </td>
                         :
                         <td>********** <button className="btn btn-warning" data-toggle="modal" data-target="#modal-login" onClick={ () => this.handleEdit(user) }>Open</button> </td>
                       }
@@ -64,15 +70,15 @@ class Home extends Component {
                       <td>{user.updatedAt}</td>
                       <td>
                         <button className="btn btn-info" data-toggle="modal" data-target="#modal-edit" onClick={ () => this.handleEdit(user) }>Edit</button>&nbsp;
-                        <button className="btn btn-danger">Delete</button>
+                        <button className="btn btn-danger" onClick={ () => this.handleDelete(user.id) }>Delete</button>
                       <FormEdit user={ this.state.detailData } />
+                      <Login user={ this.state.detailData }/>
                       </td>
                     </tr>
                   ))
                 }
               </thead>
             </table>
-            <Login user={ this.state.detailData }/>
         </div>
       </div>
     )
