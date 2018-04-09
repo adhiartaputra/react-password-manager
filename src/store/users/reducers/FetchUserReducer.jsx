@@ -1,4 +1,4 @@
-import { FETCH_USER_SUCCESS, FETCH_USER_ERROR, FETCH_USER_LOADING } from '../UserActionType'
+import { FETCH_USER_SUCCESS, FETCH_USER_ERROR, FETCH_USER_LOADING, FETCH_USER_BY_SEARCH } from '../UserActionType'
 
 const initialState = {
   listData: [],
@@ -25,7 +25,14 @@ const fetchUserReducer = (state=initialState, action) => {
       return ({
         ...state,
         loading: false,
-        errort: true
+        error: true
+      })
+    case FETCH_USER_BY_SEARCH:
+      return ({
+        ...state,
+        listData: [...action.payload],
+        loading: false,
+        error: true
       })
     default:
       return state

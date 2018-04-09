@@ -16,10 +16,7 @@ const NavbarMenu = (props) => {
                 <Link id="link" className="nav-link" to={'/'}>Home</Link>
               </li>
               <li className="nav-item">
-                <Link id="link" className="nav-link" to={'/form'}>Form</Link>
-              </li>
-              <li className="nav-item">
-                <Link id="link" className="nav-link" to={'/users'}>User</Link>
+                <Link id="link" className="nav-link" to={'/form'}>Add Password</Link>
               </li>
             </ul>
           </div>

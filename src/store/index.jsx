@@ -1,10 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { Users, EditUser } from './users/reducers'
+import { Users, EditUser, PasswordValidator } from './users/reducers'
 
 const appStore = combineReducers({
   Users,
-  EditUser
+  EditUser,
+  PasswordValidator
 })
 
 const store = createStore(
