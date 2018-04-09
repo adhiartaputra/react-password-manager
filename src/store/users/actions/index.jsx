@@ -2,7 +2,6 @@ import { addUser } from './AddUser';
 import { fetchUser } from './FetchUser';
 import { deleteUser } from './DeleteUser';
 import { handleEditData } from './HandleSubmitEditData';
-import { handleChangeEdit } from './HandleEditData';
 import { passwordValidator } from './PasswordValidation';
 import { fetchUserBySearch } from './FetchUserBySearch';
 
@@ -11,7 +10,6 @@ export {
   fetchUser,
   deleteUser,
   handleEditData,
-  handleChangeEdit,
   passwordValidator,
   fetchUserBySearch
 }

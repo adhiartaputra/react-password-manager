@@ -55,7 +55,7 @@ class Home extends Component {
           <Header />
           <h1 style={{textAlign:"center", paddingBottom:"10px"}}>Your Password List</h1>
           <Search />
-            <table className="table table-hover">
+            <table className="table table-hover table-responsive">
                 <thead>
                   <tr style={{textAlign:"center"}}>
                     <th scope="col">Url</th>

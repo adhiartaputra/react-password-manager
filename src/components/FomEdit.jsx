@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { handleEditData, handleChangeEdit } from '../store/users/actions';
+import { handleEditData } from '../store/users/actions';
 
 export class FormEdit extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  handleEditData, handleChangeEdit
+  handleEditData
 }, dispatch)
 
 const connectedFormEdit = connect(mapStateToProps, mapDispatchToProps)(FormEdit)
