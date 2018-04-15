@@ -29,7 +29,7 @@ export class Login extends Component {
   handleOnSubmit = e => {
     if ( this.state.userLogin.email === this.props.user.email ) {
       if ( this.state.userLogin.password === this.props.user.password  ) {
-        return localStorage.setItem( 'userId', this.props.user.id )
+        // return localStorage.setItem( 'userId', this.props.user.id )
       } else {
         alert( 'wrong password entered' )
       }

@@ -34,12 +34,12 @@ class Home extends Component {
   }
 
   clearLocalStorage() {
-    localStorage.setItem('userId', '')
+    // localStorage.setItem('userId', '')
     this.props.fetchUser()
   }
 
   render() {
-    const idLocal = localStorage.getItem('userId')
+    // const idLocal = localStorage.getItem('userId')
     const { loading, users } = this.props
     if ( loading ) {
         return (
