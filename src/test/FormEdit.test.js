@@ -10,7 +10,7 @@ let wrapper
 wrapper = shallow(<FormEdit store={ store }/>).dive()
 
 test('Makes sure Component is rendered', () => {
-  console.log(wrapper.instance(),'instance')
+  // console.log(wrapper.instance(),'instance')
   expect(wrapper).toBeDefined()
 })
 

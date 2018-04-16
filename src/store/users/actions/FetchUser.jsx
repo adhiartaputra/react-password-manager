@@ -4,7 +4,7 @@ import { User } from '../../../firebase';
 export const fetchUser = () => {
   return dispatch => {
     dispatch(fetchUserLoading())
-    User.get()
+    return User.get()
     .then(snapshot => {
       let payload = []
       snapshot.forEach(doc => {
@@ -15,25 +15,26 @@ export const fetchUser = () => {
         payload.push(newUser)
       })
       dispatch(fetchUserSuccess(payload))
+      return payload
     })
     .catch(err => {fetchUserError()})
   }
 }
 
-const fetchUserSuccess = (payload) => {
+export const fetchUserSuccess = (payload) => {
   return {
     type: FETCH_USER_SUCCESS,
     payload
   }
 }
 
-const fetchUserLoading = () => {
-  return {
+export const fetchUserLoading = () => ({
+  
     type: FETCH_USER_LOADING
-  }
-}
+  
+})
 
-const fetchUserError = () => {
+export const fetchUserError = () => {
   return {
     type: FETCH_USER_ERROR
   }
