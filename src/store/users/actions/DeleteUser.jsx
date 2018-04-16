@@ -7,7 +7,7 @@ export function deleteUser (userId) {
     User.doc(userId)
     .delete()
       .then(() => {
-        console.log('delete user success')
+        // console.log(data, 'ini data')
       })
       .catch((err) => dispatch(fetchUserError()))
   }

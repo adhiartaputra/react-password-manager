@@ -2,9 +2,9 @@ import { FETCH_USER_BY_SEARCH } from '../UserActionType'
 import { User } from '../../../firebase'
 
 export const fetchUserBySearch = (payload) => {
-  console.log(payload, 'in action')
+  // console.log(payload, 'in action')
   return dispatch => {
-    User.get()
+    return User.get()
     .then(snapshot=> {
       let datas = []
       snapshot.forEach(doc => {
@@ -13,10 +13,12 @@ export const fetchUserBySearch = (payload) => {
           ...doc.data()
         }
       datas.push(foundObj)
-      console.log(datas)
-      })
-      let filteredData = datas.filter(data => data.url.toLowerCase().indexOf(payload.toLowerCase()) !== -1)
-      dispatch(fetchUserBySearchSuccess(filteredData))
+      // console.log(datas)
+    })
+    // return datas
+    let filteredData = datas.filter(data => data.url.toLowerCase().indexOf(payload.toLowerCase()) !== -1)
+    dispatch(fetchUserBySearchSuccess(filteredData))
+    return filteredData
     })
   }
 }

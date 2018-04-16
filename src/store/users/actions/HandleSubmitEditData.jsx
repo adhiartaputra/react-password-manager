@@ -9,7 +9,7 @@ export function handleEditData (payload) {
   payload.updatedAt = moment().format('LLLL')
   return dispatch => {
     dispatch(fetchUserLoading())
-    User.doc(payload.id)
+    return User.doc(payload.id)
     .update(payload)
     .then(() => console.log('update succes'))
     .catch((err) => fetchUserError())
