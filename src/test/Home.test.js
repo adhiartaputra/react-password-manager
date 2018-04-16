@@ -13,22 +13,16 @@ configure({ adapter: new Adapter() })
 
 let wrapper
 
-wrapper = shallow(<Home store={store}/>)
+wrapper = shallow(<Home store={store}/>).dive()
 
 test('should render <Home />', () => {
+  // console.log(wrapper.instance())
   expect(wrapper).toBeDefined()
-  expect(wrapper.find('div').first().hasClass('container'))
+  // expect(wrapper.find('div').first().hasClass('container'))
 })
 
-test('should have table', () => {
-  expect(wrapper).toBeDefined()
-  expect(wrapper.find('table').first().hasClass('table table-hover table-responsive'))
-})
-
-test(`child component like Navbar, Header, Search, FormEdit, FormLogin`, () => {
-  expect(wrapper.find('Navbar')).toBeDefined()
-  expect(wrapper.find('Header')).toBeDefined()
-  expect(wrapper.find('Search')).toBeDefined()
-  expect(wrapper.find('FormEdit')).toBeDefined()
-  expect(wrapper.find('FormLogin')).toBeDefined()
+test(`should has initial state with false loading, false error, and [] users`, () => {
+  expect(wrapper.instance().props.users).toEqual([])
+  expect(wrapper.instance().props.loading).toEqual(false)
+  expect(wrapper.instance().props.error).toEqual(false)
 })

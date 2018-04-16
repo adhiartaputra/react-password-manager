@@ -10,8 +10,18 @@ import store from '../src/store'
 
 configure({ adapter: new Adapter() })
 
+// it('renders without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<App />, div);
+//   ReactDOM.unmountComponentAtNode(div);
+// });
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(
+  <Provider store={ store }>
+    <App />
+  </Provider>, div
+  );
   ReactDOM.unmountComponentAtNode(div);
 });

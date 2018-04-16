@@ -10,7 +10,6 @@ export class FormEdit extends Component { // eslint-disable-line react/prefer-st
       id:'',
       url:'',
       password:'',
-      username:''
     }
   }
 
